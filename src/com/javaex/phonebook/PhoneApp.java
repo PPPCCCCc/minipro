@@ -92,7 +92,7 @@ public class PhoneApp {
 				System.out.println("<이름 : ");
 				String strr = sc.next();
 				for (int i = 0; i < personList.size(); i++) {
-					Person serchh = (Person) personList.get(i);
+					Person serchh = personList.get(i);
 					if (serchh.getName().contains(strr)) {
 						System.out.println(serchh.toString());
 					}

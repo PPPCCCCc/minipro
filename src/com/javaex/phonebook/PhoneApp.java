@@ -33,7 +33,7 @@ public class PhoneApp {
 			if (str == null) {
 				break;
 			}
-
+			
 			String[] personInfo = str.split(",");
 
 			String name = personInfo[0];
@@ -70,7 +70,7 @@ public class PhoneApp {
 				String company = sc.next();
 
 				personList.add(new Person(name, hp, company));
-				register(personList);
+
 				break;
 
 			case 3:
@@ -78,16 +78,25 @@ public class PhoneApp {
 
 				System.out.println(">번호 : ");
 				int numm = sc.nextInt();
-
-				personList.remove(numm - 1);
-				register(personList);
+				for (int i = 0; i <= personList.size(); i++) {
+					if (numm == i) {
+						personList.remove(i - 1);
+					}
+				}
 
 				System.out.println("삭제되었습니다");
 				break;
 
 			case 4:
-				System.out.println("<4. 검색>");// 나중
-				System.out.println("<번호 : ");
+				System.out.println("<4. 검색>");//다시
+				System.out.println("<이름 : ");
+				String strr = sc.next();
+				for (int i = 0; i < personList.size(); i++) {
+					Person serchh = (Person) personList.get(i);
+					if (serchh.getName().contains(strr)) {
+						System.out.println(serchh.toString());
+					}
+				}
 				break;
 
 			case 5:
@@ -102,23 +111,18 @@ public class PhoneApp {
 				System.out.println("다시입력해주세요");
 			}
 
+			Writer fw = new FileWriter("./PhoneDB.txt");
+			BufferedWriter bw = new BufferedWriter(fw);
+			for (Person p : personList) {
+				String saveter = p.getName() + "," + p.getHp() + "," + p.getCompany();
+				bw.write(saveter);
+				bw.newLine();
+			}
+			bw.close();
 		}
-		// bw.close();
 		br.close();
 		sc.close();
 
-	}
-
-	public static void register(List<Person> personList) throws IOException {
-
-		Writer fw = new FileWriter("./PhoneDB.txt");
-		BufferedWriter bw = new BufferedWriter(fw);
-		for (Person p : personList) {
-			String saveter = p.getName() + "," + p.getHp() + "," + p.getCompany();
-			bw.write(saveter);
-			bw.newLine();
-		}
-		bw.close();
 	}
 
 }

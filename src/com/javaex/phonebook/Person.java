@@ -4,7 +4,6 @@ public class Person {
 	private String name;
 	private String hp;
 	private String company;
-	private int num = 0;
 
 	public Person() {
 	}
@@ -13,7 +12,7 @@ public class Person {
 		this.name = name;
 		this.hp = hp;
 		this.company = company;
-		
+
 	}
 
 	public String getName() {
@@ -39,13 +38,10 @@ public class Person {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	
-	public int getNum() {
-		return num+1;
-	}
 
-	public void setNum(int num) {
-		this.num = num;
+	@Override
+	public String toString() {
+		return name + " " + hp + " " + company;
 	}
 
 	public void showInfo() {
